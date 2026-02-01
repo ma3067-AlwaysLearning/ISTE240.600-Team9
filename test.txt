@@ -5,7 +5,4 @@ Test3
 Test4
 Test5
 Test6
-<<<<<<< HEAD
-Test7
-=======
->>>>>>> 6d531999747a023c4bf931d86652b69b69042a6a
+Test8
