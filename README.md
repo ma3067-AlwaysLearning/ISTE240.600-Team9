@@ -6,11 +6,11 @@ Team Members:
     Name: Mohammed Adil
     ID: 415006855
 
-    Name: Osama Ahmad
-    ID: 764000269
+    Name: 
+    ID: 
 
-    Name: Araz Hafez
-    ID: 433006827
+    Name: 
+    ID: 
 
-    Name: Muhammed Rashid
-    ID: 421007820
+    Name: 
+    ID: 
