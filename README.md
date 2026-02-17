@@ -12,7 +12,6 @@ Team Members:
     Name: Osama Ahmad
     ID: 764000269
 
-
     Name: Araz Hafez
     ID: 433006827
 
