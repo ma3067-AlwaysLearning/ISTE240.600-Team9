@@ -6,8 +6,8 @@ Team Members:
     Name: Mohammed Adil
     ID: 415006855
 
-    Name: Muhammad Rashid
-    ID: 421007820 
+    Name:
+    ID:
 
     Name: Osama Ahmad
     ID: 764000269
