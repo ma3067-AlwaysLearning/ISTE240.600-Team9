@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class User {
-    private int  id;
+    private int  ID;
     private String fullName;
     private String email;
     private String phone;
@@ -16,9 +16,9 @@ public class User {
     public User() {}
 
     // Parameterized constructor
-    public User(int id, String fullName, String email, String phone,
+    public User(int ID, String fullName, String email, String phone,
                 String role, String password, String createdAt) {
-        this.id = id;
+        this.ID = ID;
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
@@ -28,9 +28,9 @@ public class User {
     }
 
     // Getters & Setters
-    public int getId() {return id;}
+    public int getID() {return ID;}
 
-    public void setId(int id) {this.id = id;}
+    public void setID(int ID) {this.ID = ID;}
 
     public String getFullName() {return fullName;}
 
@@ -84,7 +84,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "ID=" + ID +
                 ", fullName='" + fullName + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
