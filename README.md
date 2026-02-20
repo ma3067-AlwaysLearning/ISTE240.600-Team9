@@ -1,5 +1,5 @@
 # ISTE240.600-Team9
-This consists of a group project collaborated on by 4 people for our ISTE240 Project, using Spring as our main framework 
+The objective of this particular project is the development of the Field Booking System, a web-based application intended for the effective management of the booking season for sports fields, the system will enable users to search for available fields, view their real-time availability, and make requests for booking without conflicts and without going through the hassle of booking through a messaging app or by phone call. 
 
 Team Members:
 
