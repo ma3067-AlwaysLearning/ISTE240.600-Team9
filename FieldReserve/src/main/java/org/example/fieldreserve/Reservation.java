@@ -1,4 +1,4 @@
-package org.example.fieldreserve;
+package org.example.fieldreserve.model;
 
 import org.springframework.stereotype.Component;
 import java.time.Duration;
@@ -139,4 +139,5 @@ public class Reservation {
             System.out.println("There was an error in processing your payment. Please try again.");
         }
     }
+
 }
