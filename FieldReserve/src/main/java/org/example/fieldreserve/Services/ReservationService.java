@@ -1,5 +1,6 @@
-package org.example.fieldreserve.services;
+package org.example.fieldreserve.Services;
 
+import org.example.fieldreserve.model.Field;
 import org.example.fieldreserve.model.Location;
 
 import org.example.fieldreserve.model.User;
@@ -11,17 +12,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 @org.springframework.stereotype.Service
-public class RservationService {
+public class ReservationService {
     private final List<User> users;
-    private List<Reservation> reservations = new ArrayList<>();
-    public final List<Location> location;
+    private final List<Reservation> reservations;
+    private final List<Location> location;
+    private final List<Field> fields;
 
 
-    public RservationService() {
+
+    public ReservationService() {
         this.users = new ArrayList<>();
+        this.location = new ArrayList<>();
+        this.fields = new ArrayList<>();
+        this.reservations = new ArrayList<>();
 
         seedData();
-        this.location = new ArrayList<>();
+
     }
 
     private void seedData() {
@@ -78,4 +84,16 @@ public class RservationService {
         reservations.add(reservation);
     }
 
+    public void addField(int id, String name) {
+        Field field = new Field(id, name, "Unknown", 0.0, true);
+        fields.add(field);
+    }
+
+    public void addField(Field field) {
+        fields.add(field);
+    }
+
+    public List<Field> getAllFields() {
+        return fields;
+    }
 }

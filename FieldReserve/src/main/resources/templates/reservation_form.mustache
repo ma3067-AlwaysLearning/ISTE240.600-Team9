@@ -11,7 +11,7 @@
 kindly requested to fill the form below.</p>
 
 <div class="ui-container">
-    <form class="ui-form" action="/reservation" method="post">
+    <form class="ui-form" action="/reservation/add" method="post">
         <div class="field">
             <label>Reservation ID</label>
             <input type="number" name="reservationID" placeholder="Reservation ID">
@@ -24,17 +24,17 @@ kindly requested to fill the form below.</p>
 
         <div class="field">
             <label>Start Time</label>
-            <input type="datetime-local" name="startTime" placeholder="Start Time">
+            <input type="time" name="startTime" placeholder="Start Time">
         </div>
 
         <div class="field">
             <label>End Time</label>
-            <input type="datetime-local" name="endTime" placeholder="End Time">
+            <input type="time" name="endTime" placeholder="End Time">
         </div>
         <button class="ui-button" type="submit">Submit</button>
     </form>
 </div>
 
-<a style="font-weight: bold" href="../static/index.html">Click on this link to return to the homepage.</a>
+<a style="font-weight: bold" href="/">Click on this link to return to the homepage.</a>
 </body>
 </html>

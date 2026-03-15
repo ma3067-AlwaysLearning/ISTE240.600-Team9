@@ -1,7 +1,7 @@
 package org.example.fieldreserve.Controllers;
 
+import org.example.fieldreserve.Services.ReservationService;
 import org.example.fieldreserve.model.Reservation;
-import org.example.fieldreserve.services.RservationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/reservation")
 public class ReservationController {
 
-    private final RservationService service;
+    private final ReservationService service;
 
-    public ReservationController(RservationService service) {
+    public ReservationController(ReservationService service) {
         this.service = service;
     }
 
@@ -27,7 +27,7 @@ public class ReservationController {
     @GetMapping("/add")
     public String showAddReservationForm(Model model) {
         model.addAttribute("reservation", new Reservation());
-        return "addreservation_form";
+        return "reservation_form";
     }
 
     // Used to handle users' form submissions

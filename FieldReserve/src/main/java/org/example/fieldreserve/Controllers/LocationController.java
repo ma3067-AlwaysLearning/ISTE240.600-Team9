@@ -1,6 +1,7 @@
 package org.example.fieldreserve.Controllers;
 
-import org.example.fieldreserve.services.RservationService;
+import org.example.fieldreserve.Services.ReservationService;
+import org.example.fieldreserve.model.Location;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class LocationController {
 
     @Autowired
-    private RservationService service;
+    private ReservationService service;
 
     //View all locations
     @GetMapping("/locations")
@@ -27,8 +28,14 @@ public class LocationController {
 
     // Process form
     @PostMapping("/locations/add")
-    public String addLocation(@RequestParam int id, @RequestParam String name) {
-        service.addLocation(id, name);
+    public String addLocation(
+            @RequestParam("locationID") int locationID,
+            @RequestParam("locationName") String locationName,
+            @RequestParam("locationArea") String locationArea,
+            @RequestParam("locationCity") String locationCity) {
+
+        Location location = new Location(locationName, locationArea, locationCity, locationID);
+        service.addLocation(location);
         return "redirect:/locations";
     }
 }
