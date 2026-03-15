@@ -19,6 +19,10 @@ public class Reservation {
 
     // Default constructor
     public Reservation() {
+        this.reservationStatus = "PENDING"; // default status
+        this.paymentStatus = false;         // default payment status
+        this.totalCost = 0.0;               // default total cost
+
     }
 
     // Parameterized constructor
