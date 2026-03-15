@@ -2,51 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>User Details Form</title>
+    <title>Add User</title>
 </head>
 <body>
-<h1 style="text-align: center">User Details Form</h1>
 
-<p>This page contains a form for filling the user information. Therefore, you are kindly requested to fill
-    the form below.</p>
+<h1>Add User</h1>
 
-<div class="ui-container">
-    <form class="ui-form" action="/user" method="post">
-        <div class="field">
-            <label>User ID</label>
-            <input type="number" name="ID" placeholder="User ID">
-        </div>
+<form action="/user/add" method="post">
+    <label>User ID:</label><br>
+    <input type="number" name="userID" required><br><br>
 
-        <div class="field">
-            <label>User's Full Name</label>
-            <input type="text" name="fullName" placeholder="Full Name">
-        </div>
+    <label>Full Name:</label><br>
+    <input type="text" name="fullName" required><br><br>
 
-        <div class="field">
-            <label>User's Phone Number</label>
-            <input type="tel" name="phone" placeholder="Phone Number">
-        </div>
+    <label>Email:</label><br>
+    <input type="email" name="email" required><br><br>
 
-        <div class="field">
-            <label>User's Role</label>
-            <input type="text" name="role" placeholder="Role">
-        </div>
+    <label>Phone:</label><br>
+    <input type="text" name="phone" required><br><br>
 
-        <div class="field">
-            <label>User Password</label>
-            <input type="password" name="password" placeholder="Password">
-        </div>
+    <label>Role:</label><br>
+    <input type="text" name="role" required><br><br>
 
-        <div class="field">
-            <label>Account Created On</label>
-            <input type="date" name="date" placeholder="Date">
-        </div>
+    <label>Password:</label><br>
+    <input type="password" name="password" required><br><br>
 
-        <button class="ui-button" type="submit">Submit</button>
-    </form>
-</div>
+    <label>Created At:</label><br>
+    <input type="date" name="createdAt" required><br><br>
 
-<a style="font-weight: bold" href="../static/index.html">Click on this link to return to the homepage.</a>
+    <button type="submit">Add User</button>
+</form>
+
+<br>
+<a href="/user">View Users</a>
+<a href="/">Home</a>
 
 </body>
 </html>

@@ -21,16 +21,20 @@ public class FormController {
         this.service = service;
     }
 
-    // User form
-    @PostMapping("/user")     // @PostMapping handles POST requests from the defined pages
+    // Osama part
+    @PostMapping("/user/add")
     public String addUser(
-            @RequestParam("userID") int userID, @RequestParam("fullName") String fullName, @RequestParam("phone") String phone,
-            @RequestParam("role") String role, @RequestParam("password") String password, @RequestParam("date") String date) {
+            @RequestParam("userID") int userID,
+            @RequestParam("fullName") String fullName,
+            @RequestParam("email") String email,
+            @RequestParam("phone") String phone,
+            @RequestParam("role") String role,
+            @RequestParam("password") String password,
+            @RequestParam("createdAt") String createdAt) {
 
-        // Used to create a new object using the input values from the form pages
-        User user = new User(userID, fullName, phone, role, password, LocalDate.parse(date));
-        service.addUser(user); // Adds the object to the service
-        return "redirect:/success/User"; // Brings users to the success page through path variables
+        User user = new User(userID, fullName, email, phone, role, password, createdAt);
+        service.addUser(user);
+        return "redirect:/user";
     }
 
     // Location + Field form
