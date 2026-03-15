@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 
-@Component
+
 public class Reservation {
 
     private int reservationID;
