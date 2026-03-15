@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation Form</title>
+</head>
+<body>
+<h1 style="text-align: center">Reservation Form</h1>
+
+<p>This page contains a form for filling the customer requirements for the reservation. Therefore, you are
+kindly requested to fill the form below.</p>
+
+<div class="ui-container">
+    <form class="ui-form" action="/reservation/add" method="post">
+        <div class="field">
+            <label>Reservation ID</label>
+            <input type="number" name="reservationID" placeholder="Reservation ID">
+        </div>
+
+        <div class="field">
+            <label>Reservation Date</label>
+            <input type="date" name="reservationDate" placeholder="Reservation Date">
+        </div>
+
+        <div class="field">
+            <label>Start Time</label>
+            <input type="time" name="startTime" placeholder="Start Time">
+        </div>
+
+        <div class="field">
+            <label>End Time</label>
+            <input type="time" name="endTime" placeholder="End Time">
+        </div>
+        <button class="ui-button" type="submit">Submit</button>
+    </form>
+</div>
+
+<a style="font-weight: bold" href="/">Click on this link to return to the homepage.</a>
+</body>
+</html>
