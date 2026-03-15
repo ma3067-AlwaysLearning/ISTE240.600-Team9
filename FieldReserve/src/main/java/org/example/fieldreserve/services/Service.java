@@ -16,6 +16,7 @@ public class Service {
 
     private void seedData() {
         location.add(new Location("Qusais Fields","Al Qusais","Dubai", 10));
+        location.add(new Location("Barsha Courts","Al Barsha","Dubai", 3));
     }
 
 }
