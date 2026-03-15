@@ -1,7 +1,7 @@
 package org.example.fieldreserve.model;
 import org.springframework.stereotype.Component;
 
-@Component
+
 public class Field {
 
     private int fieldID; //Every Field will be identified with a unique ID

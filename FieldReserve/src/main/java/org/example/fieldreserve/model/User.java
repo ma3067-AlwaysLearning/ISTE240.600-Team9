@@ -2,7 +2,7 @@ package org.example.fieldreserve.model;
 
 import org.springframework.stereotype.Component;
 
-@Component
+
 public class User {
     private int  ID;
     private String fullName;

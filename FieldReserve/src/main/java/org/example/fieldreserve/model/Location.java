@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
-@Component
+
 public class Location {
     private int locationID; // Unique identifier for a location area
     private ArrayList<Field> fields = new ArrayList<>(); //Holds all fields that belong in a single location
