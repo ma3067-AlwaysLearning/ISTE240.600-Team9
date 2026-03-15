@@ -1,7 +1,4 @@
 package org.example.fieldreserve.model;
-
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 
 
@@ -12,7 +9,7 @@ public class Location {
     private String locationArea; // A place inside a city, like Dubai Silicon Oasis
     private String locationCity; // Cities like Dubai,Sharjah and so ...
 
-    //Empty Constructor, unable have only the below constructor alone without some error about parameters not being able linked by autowire?? why is String type trying to be autowired?
+
     public Location(){
 
     }
