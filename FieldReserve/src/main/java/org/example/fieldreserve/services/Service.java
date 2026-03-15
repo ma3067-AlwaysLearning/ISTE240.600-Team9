@@ -2,6 +2,8 @@ package org.example.fieldreserve.services;
 
 
 import org.example.fieldreserve.model.User;
+import org.example.fieldreserve.model.Reservation;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.List;
 @org.springframework.stereotype.Service
 public class Service {
     private final List<User> users;
+    private List<Reservation> reservations = new ArrayList<>();
 
     public Service() {
         this.users = new ArrayList<>();
@@ -37,6 +40,9 @@ public class Service {
                 "User@456",
                 "2026-02-21"
         ));
+        
+        reservations.add(new Reservation(1, "2026-03-20", "18:00", "20:00"));
+        reservations.add(new Reservation(2, "2026-03-21", "19:00", "20:00"));
     }
 
     // User Method
@@ -47,4 +53,15 @@ public class Service {
     public void addUser(User user) {
         users.add(user);
     }
+    
+    // Returns an array showing all existing reservations
+    public List<Reservation> getAllReservations() {
+        return reservations;
+    }
+
+    // Adds a new reservation
+    public void addReservation(Reservation reservation) {
+        reservations.add(reservation);
+    }
+
 }
