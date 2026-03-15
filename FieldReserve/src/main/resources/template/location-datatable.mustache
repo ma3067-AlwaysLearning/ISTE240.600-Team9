@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Locations</title>
+</head>
+<body>
+
+<h1>Locations</h1>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+
+    {{#locations}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{name}}</td>
+        </tr>
+    {{/locations}}
+
+</table>
+
+<br>
+
+<a href="/locations/add">Add New Location</a>
+<br><br>
+<a href="/">Back to Home</a>
+
+</body>
+</html>
