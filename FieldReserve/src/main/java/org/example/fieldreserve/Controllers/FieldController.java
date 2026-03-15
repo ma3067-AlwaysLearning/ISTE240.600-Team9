@@ -1,6 +1,6 @@
 package org.example.fieldreserve.Controllers;
 
-import org.example.fieldreserve.Services.DataService;
+import org.example.fieldreserve.Services.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.*;
 public class FieldController {
 
     @Autowired
-    private DataService dataService;
+    private service service;
 
     //View all fields
     @GetMapping("/fields")
     public String showFields(Model model) {
-        model.addAttribute("fields", dataService.getAllFields());
+        model.addAttribute("fields", service.getAllFields());
         return "field-datatable";
     }
 
@@ -28,7 +28,7 @@ public class FieldController {
     //Process form
     @PostMapping("/fields/add")
     public String addField(@RequestParam int id, @RequestParam String name) {
-        dataService.addField(id, name);
+        service.addField(id, name);
         return "redirect:/fields";
     }
 }

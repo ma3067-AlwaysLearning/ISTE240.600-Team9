@@ -4,7 +4,7 @@ import org.example.fieldreserve.model.User;
 import org.example.fieldreserve.model.Location;
 import org.example.fieldreserve.model.Field;
 import org.example.fieldreserve.model.Reservation;
-import org.example.fieldreserve.services.Service;
+import org.example.fieldreserve.services.RservationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,10 +14,10 @@ import java.time.LocalTime;
 @Controller
 public class FormController {
 
-    private final Service service;
+    private final RservationService service;
 
 
-    public FormController(Service service) {
+    public FormController(RservationService service) {
         this.service = service;
     }
 

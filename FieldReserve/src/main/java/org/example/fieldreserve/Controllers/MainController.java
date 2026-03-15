@@ -2,15 +2,15 @@ package org.example.fieldreserve.Controllers;
 
 import org.example.fieldreserve.model.User;
 import org.springframework.stereotype.Controller;
-import org.example.fieldreserve.services.Service;
+import org.example.fieldreserve.services.RservationService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
-    private final Service service;
+    private final RservationService service;
 
-    public MainController(Service service) {
+    public MainController(RservationService service) {
         this.service = service;
     }
 

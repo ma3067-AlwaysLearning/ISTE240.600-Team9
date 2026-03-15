@@ -4,19 +4,20 @@ import org.example.fieldreserve.model.Location;
 
 import org.example.fieldreserve.model.User;
 import org.example.fieldreserve.model.Reservation;
-import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @org.springframework.stereotype.Service
-public class Service {
+public class RservationService {
     private final List<User> users;
     private List<Reservation> reservations = new ArrayList<>();
     public final List<Location> location;
 
 
-    public Service() {
+    public RservationService() {
         this.users = new ArrayList<>();
 
         seedData();
@@ -47,8 +48,8 @@ public class Service {
                 "2026-02-21"
         ));
 
-        reservations.add(new Reservation(1, "2026-03-20", "18:00", "20:00"));
-        reservations.add(new Reservation(2, "2026-03-21", "19:00", "20:00"));
+        reservations.add(new Reservation(1, LocalDate.of(2022, 3, 20), LocalTime.parse("18:00"), LocalTime.parse("20:00"), 100, "Accepted", true));
+        reservations.add(new Reservation(2, LocalDate.of(2026, 3, 21), LocalTime.parse("19:00"), LocalTime.parse("20:00"), 120, "Reserved", false));
     }
 
     // User Method
@@ -56,8 +57,9 @@ public class Service {
         return users;
     }
 
-    public List<Location> getAllLocations(){
+    public List<Location> getAllLocations() {
         return location;
+    }
     public void addUser(User user) {
         users.add(user);
     }
@@ -67,8 +69,10 @@ public class Service {
         return reservations;
     }
 
-    public void addLocation(Location location){
+    public void addLocation(Location location) {
         this.location.add(location);
+    }
+
     // Adds a new reservation
     public void addReservation(Reservation reservation) {
         reservations.add(reservation);

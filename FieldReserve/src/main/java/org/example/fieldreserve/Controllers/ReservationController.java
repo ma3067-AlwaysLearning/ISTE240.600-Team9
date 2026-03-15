@@ -1,7 +1,7 @@
 package org.example.fieldreserve.Controllers;
 
 import org.example.fieldreserve.model.Reservation;
-import org.example.fieldreserve.service.ReservationService;
+import org.example.fieldreserve.services.RservationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/reservation")
 public class ReservationController {
 
-    private final Service service;
+    private final RservationService service;
 
-    public ReservationController(Service service) {
+    public ReservationController(RservationService service) {
         this.service = service;
     }
 
     // Displaying the reservation data table
     @GetMapping
     public String showReservations(Model model) {
-        model.addAttribute("reservations", Service.getAllReservations());
+        model.addAttribute("reservations", service.getAllReservations());
         return "reservation-datatable";
     }
 
@@ -33,7 +33,7 @@ public class ReservationController {
     // Used to handle users' form submissions
     @PostMapping("/add")
     public String addReservation(@ModelAttribute Reservation reservation) {
-        Service.saveReservation(reservation);
+        service.addReservation(reservation);
         return "redirect:/reservation";
     }
 }
