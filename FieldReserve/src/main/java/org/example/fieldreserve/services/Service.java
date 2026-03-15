@@ -19,4 +19,12 @@ public class Service {
         location.add(new Location("Barsha Courts","Al Barsha","Dubai", 3));
     }
 
+    public List<Location> getAllLocations(){
+        return location;
+    }
+
+    public void addLocation(Location location){
+        this.location.add(location);
+    }
+
 }
