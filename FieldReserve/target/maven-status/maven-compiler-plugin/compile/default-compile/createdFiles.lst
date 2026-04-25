@@ -1,12 +1,1 @@
-org\example\fieldreserve\model\Location.class
-org\example\fieldreserve\FieldReserveApplication.class
-org\example\fieldreserve\Controllers\MainController.class
-org\example\fieldreserve\Services\ReservationService.class
-org\example\fieldreserve\Controllers\ReservationController.class
-org\example\fieldreserve\model\Reservation.class
-org\example\fieldreserve\Controllers\LocationController.class
 org\example\fieldreserve\Controllers\FieldController.class
-org\example\fieldreserve\model\User.class
-org\example\fieldreserve\Controllers\FormController.class
-org\example\fieldreserve\Controllers\SuccessPageController.class
-org\example\fieldreserve\model\Field.class

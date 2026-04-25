@@ -84,8 +84,9 @@ public class ReservationService {
         reservations.add(reservation);
     }
 
+    //I modified this as per the new constructor
     public void addField(int id, String name) {
-        Field field = new Field(id, name, "Unknown", 0.0, true);
+        Field field = new Field(name, "Unknown", 0.0, "AVAILABLE");
         fields.add(field);
     }
 
