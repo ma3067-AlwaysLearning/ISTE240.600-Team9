@@ -1,7 +1,11 @@
 package org.example.fieldreserve.model;
 import jakarta.persistence.*;
 
+//Student Name: Araz Hafez
+//ID: 433006827
+
 @Entity
+@Table(name = "fields") //create a table called "fields" in our database
 public class Field {
     //This is going to be our primary key:
     @Id
