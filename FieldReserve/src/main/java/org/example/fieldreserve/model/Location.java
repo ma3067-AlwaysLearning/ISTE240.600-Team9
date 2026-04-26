@@ -16,7 +16,7 @@ public class Location {
     @Column(nullable = false)
     private String locationName; // A name given for the location
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String locationArea; // A place inside a city, like Dubai Silicon Oasis
 
     @Column(nullable = false)
