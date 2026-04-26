@@ -14,16 +14,36 @@
 <nav class="navbar-custom">
     <ul class="nav-list">
         <li><a href="index.html">Homepage</a></li>
-        <li><a href="users.html">Users</a></li>
+        <li><a href="user.html">Users</a></li>
         <li><a href="reservations.html">Reservations</a></li>
         <li><a href="locations.html">Locations</a></li>
-        <li><a href="fields.html"Fields></a></li>
+        <li><a href="fields.html">Fields</a></li>
     </ul>
 </nav>
 
-<h1 class="text-center">Reservations</h1>
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-md-6 d-flex">
+            <input type="text"
+                   id="searchStatus"
+                   class="form-control me-2"
+                   placeholder="Search by Reservation Status (e.g. CONFIRMED)">
 
-<!-- TABLE -->
+            <button class="btn btn-warning" onclick="searchReservations()">
+                Search
+            </button>
+
+            <button class="btn btn-secondary ms-2" onclick="loadReservations()">
+                Reset
+            </button>
+
+        </div>
+    </div>
+</div>
+
+<h1 class="text-center mt-3">Reservations</h1>
+
+<!-- TABLE SECTION -->
 <div class="table-container">
     <div class="container mt-4">
 
@@ -56,7 +76,6 @@
     </div>
 </div>
 
-<!-- FORM -->
 <div class="container mt-4">
 
     <div class="form-container p-4 rounded shadow">
