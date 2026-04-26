@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Reservation Data</title>
+
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: auto;
+            width: auto;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        th {
+            background-color: #1E2E57;
+            color: #F2C94C;
+        }
+
+        th:hover {
+            background-color: #19274A;
+            cursor: pointer;
+        }
+
+        td {
+            background-color: #F2C94C;
+            color: black;
+        }
+
+        td:hover {
+            background-color: #E6BE45;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+
+<body>
+<h1 style="text-align: center">User Reservation Data</h1>
+<table>
+    <tr>
+        <th>Reservation ID</th>
+        <th>Reservation Date</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Total Cost</th>
+        <th>Reservation Status</th>
+        <th>Payment Status</th>
+    </tr>
+
+    <tr>
+        <td>{{reservationID}}</td>
+        <td>{{reservationDate}}</td>
+        <td>{{startTime}}</td>
+        <td>{{endTime}}</td>
+        <td>{{totalCost}}</td>
+        <td>{{reservationStatus}}</td>
+        <td>{{paymentStatus}}</td>
+    </tr>
+</table>
+<a style="font-weight: bold" href="../static/index.html">Click on this link to return to the homepage.</a>
+
+</body>
+</html>

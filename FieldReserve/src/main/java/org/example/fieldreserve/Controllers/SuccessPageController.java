@@ -15,3 +15,4 @@ public class SuccessPageController {
         model.addAttribute("entityName", entityName); // Gives the model a name for it to be displayed dynamically
         return "success"; // Used to display the page
     }
+}

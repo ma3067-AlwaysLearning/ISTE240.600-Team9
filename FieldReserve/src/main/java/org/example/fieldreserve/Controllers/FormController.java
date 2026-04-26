@@ -4,7 +4,6 @@ import org.example.fieldreserve.model.User;
 import org.example.fieldreserve.model.Location;
 import org.example.fieldreserve.model.Field;
 import org.example.fieldreserve.model.Reservation;
-import org.example.fieldreserve.services.Service;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,11 +13,11 @@ import java.time.LocalTime;
 @Controller
 public class FormController {
 
-    private final Service service;
+    private final org.example.fieldreserve.service.ReservationService reservationService;
 
 
-    public FormController(Service service) {
-        this.service = service;
+    public FormController(org.example.fieldreserve.service.ReservationService reservationService) {
+        this.reservationService = reservationService;
     }
 
     // User form
@@ -29,7 +28,7 @@ public class FormController {
 
         // Used to create a new object using the input values from the form pages
         User user = new User(userID, fullName, phone, role, password, LocalDate.parse(date));
-        service.addUser(user); // Adds the object to the service
+        reservationService.addUser(user); // Adds the object to the service
         return "redirect:/success/User"; // Brings users to the success page through path variables
     }
 
@@ -43,8 +42,8 @@ public class FormController {
 
         Location location = new Location(locationID, locationArea, locationName, locationCity);
         Field field = new Field(fieldID, fieldName, fieldLocation);
-        service.addLocation(location);
-        service.addField(field);
+        reservationService.addLocation(location);
+        reservationService.addField(field);
         return "redirect:/success/Field+Location";
     }
 
@@ -56,7 +55,7 @@ public class FormController {
 
         Reservation reservation = new Reservation(reservationID, LocalDate.parse(reservationDate),
                 LocalTime.parse(startTime), LocalTime.parse(endTime));
-        service.addReservation(reservation);
+        reservationService.addReservation(reservation);
         return "redirect:/success/Reservation";
     }
 }
