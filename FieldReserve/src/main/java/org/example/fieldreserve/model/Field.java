@@ -1,4 +1,5 @@
 package org.example.fieldreserve.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 //Student Name: Araz Hafez
@@ -19,6 +20,10 @@ public class Field {
     //added 2 new attributes:
     private String fieldType;
     private int capacity;
+
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private Location location;
 
     //Default-Non arg constructor
     public Field() {}
@@ -51,6 +56,17 @@ public class Field {
 
     public int getCapacity() {return capacity;}
     public void setCapacity(int capacity) {this.capacity = capacity;}
+
+    public Location getLocation() {return location;}
+    public void setLocation(Location location) {this.location = location;}
+
+    public String getLocationCity() {
+        if (location != null) {
+            return location.getCity(); //Mohammad Adil can you check this***
+        } else {
+            return null;
+        }
+    }
 
     //Additional Methods
 
