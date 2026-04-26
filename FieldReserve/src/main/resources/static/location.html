@@ -20,7 +20,8 @@
         <option value="Ras Al Khaimah">Ras Al Khaimah</option>
         <option value="Umm Al Quwain">Umm Al Quwain</option>
     </select>
-
+    <input class="form-control mb-2" type="number" id="searchID" placeholder="Search by ID" min="1">
+    <button class="btn btn-primary mt-2" id="search">Search By Id</button>
     <button class="btn btn-primary mt-2" onclick="location.reload()">Clear Search Filter</button>
 </div>
 
@@ -179,6 +180,30 @@
             }
         });
     });
+    $("#search").click(function (){
+        let locationAPI = "http://localhost:8080/api/locations"
+        let id = $("#searchID").val();
+
+        if (id === "" || id <= 0) {
+            alert("Please enter a ID greater than 0");
+            return;
+        }
+
+        $.get(locationAPI + "/" + id, function (data) {
+            let locationTable = "";
+            locationTable += `<tr>
+                                    <td> ${data.locationID} </td>
+                                    <td> ${data.locationName} </td>
+                                    <td> ${data.locationArea} </td>
+                                    <td> ${data.locationCity} </td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm me-1"onclick="fillEditForm(${data.locationID},'${data.locationName}','${data.locationArea}','${data.locationCity}')">Edit</button>
+                                        <button class="btn btn-danger btn-sm" onclick="deleteLocation(${data.locationID})">Delete</button>
+                                    </td>
+                            </tr>`
+            $("#locationTable").html(locationTable);
+
+    })});
     $(document).ready(function () {
         $("#updateBtn").hide();
     });
