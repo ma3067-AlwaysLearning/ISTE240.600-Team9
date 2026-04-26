@@ -15,3 +15,8 @@ Team Members:
     Name: Araz Hafez
     ID: 433006827
 
+Merge Manager:
+
+    Name: Mohammed Adil
+    ID: 415006855
+
