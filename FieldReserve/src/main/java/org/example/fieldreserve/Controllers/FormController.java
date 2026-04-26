@@ -1,11 +1,12 @@
 package org.example.fieldreserve.Controllers;
 
+import org.example.fieldreserve.Services.ReservationService;
 import org.example.fieldreserve.model.User;
 import org.example.fieldreserve.model.Location;
 import org.example.fieldreserve.model.Field;
 import org.example.fieldreserve.model.Reservation;
-import org.example.fieldreserve.services.Service;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.time.LocalDate;
@@ -14,11 +15,17 @@ import java.time.LocalTime;
 @Controller
 public class FormController {
 
-    private final Service service;
+    private final ReservationService service;
 
 
-    public FormController(Service service) {
+    public FormController(ReservationService service) {
         this.service = service;
+    }
+
+    // Show Location + Field form
+    @GetMapping("/locationField")
+    public String showLocationFieldForm() {
+        return "location-field_form";
     }
 
     // Osama part
@@ -40,27 +47,20 @@ public class FormController {
     // Location + Field form
     @PostMapping("/locationField")
     public String addLocationAndField(
-            @RequestParam("locationID") int locationID, @RequestParam("locationArea") String locationArea,
-            @RequestParam("locationName") String locationName, @RequestParam("locationCity") String locationCity,
-            @RequestParam("fieldID") int fieldID, @RequestParam("fieldName") String fieldName,
+            @RequestParam("locationID") int locationID,
+            @RequestParam("locationArea") String locationArea,
+            @RequestParam("locationName") String locationName,
+            @RequestParam("locationCity") String locationCity,
+            @RequestParam("fieldID") int fieldID,
+            @RequestParam("fieldName") String fieldName,
             @RequestParam("fieldLocation") String fieldLocation) {
 
-        Location location = new Location(locationID, locationArea, locationName, locationCity);
-        Field field = new Field(fieldID, fieldName, fieldLocation);
+        Location location = new Location(locationName, locationArea, locationCity, locationID);
+        Field field = new Field(fieldID, fieldName, fieldLocation, 0.0, true);
+
         service.addLocation(location);
         service.addField(field);
+
         return "redirect:/success/Field+Location";
-    }
-
-    // Reservation form
-    @PostMapping("/reservation")
-    public String addReservation(
-            @RequestParam("reservationID") int reservationID, @RequestParam("reservationDate") String reservationDate,
-            @RequestParam("startTime") String startTime, @RequestParam("endTime") String endTime) {
-
-        Reservation reservation = new Reservation(reservationID, LocalDate.parse(reservationDate),
-                LocalTime.parse(startTime), LocalTime.parse(endTime));
-        service.addReservation(reservation);
-        return "redirect:/success/Reservation";
     }
 }
