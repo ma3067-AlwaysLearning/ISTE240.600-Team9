@@ -4,14 +4,22 @@ var apiUrl = "/api/reservations";
 window.onload = function () {
     loadReservations();
 
-    // Used to handle form submissions
+    // Handles form submission (create/update reservation)
     document.getElementById("reservationForm").onsubmit = function (event) {
         event.preventDefault();
         saveReservation();
     };
+
+    // An event listener that responds to pressing a key on the keyboard for "Enter"
+    document.getElementById("searchStatus").addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+            searchReservations();
+        }
+    });
 };
 
-// Used to retrieve all the existing reservations to display them on the Reservations table
+
+// Used to retrieve all existing reservations and display them in the table
 function loadReservations() {
     fetch(apiUrl)
         .then(response => response.json())
@@ -23,12 +31,13 @@ function loadReservations() {
         });
 }
 
-// Function used to create and update a reservation based on whether it exists or not
+
+// Function used to create or update a reservation
 function saveReservation() {
 
     var reservationId = document.getElementById("reservationId")?.value;
 
-    // Allows for creating reservation objects based on inputs received
+    // Create reservation object from form inputs
     var reservation = {
         userId: document.getElementById("userId").value,
         fieldId: document.getElementById("fieldId").value,
@@ -42,7 +51,7 @@ function saveReservation() {
     var url = apiUrl;
     var method = "POST";
 
-    // Allow for updating existing reservations and adding new ones (if they don't exist)
+    // If reservationId exists → update instead of create
     if (reservationId && reservationId !== "") {
         url = apiUrl + "/" + reservationId;
         method = "PUT";
@@ -59,14 +68,37 @@ function saveReservation() {
         .then(response => response.json())
         .then(() => {
             clearForm();
-            loadReservations(); // refresh table immediately
+            loadReservations(); // refresh table immediately after save
         })
         .catch(error => {
             console.error("Error saving reservation:", error);
         });
 }
 
-// Function used for updating a reservation
+
+// Function used to search reservations by status (REQUIRED FEATURE)
+function searchReservations() {
+
+    var status = document.getElementById("searchStatus").value;
+
+    if (status.trim() === "") {
+        alert("Please enter a reservation status to search");
+        return;
+    }
+
+    // Calls backend search endpoint
+    fetch(apiUrl + "/search?status=" + encodeURIComponent(status))
+        .then(response => response.json())
+        .then(reservations => {
+            showReservations(reservations);
+        })
+        .catch(error => {
+            console.error("Error searching reservations:", error);
+        });
+}
+
+
+// Function used for editing a reservation
 function editReservation(id) {
     fetch(apiUrl + "/" + id)
         .then(response => response.json())
@@ -80,7 +112,7 @@ function editReservation(id) {
             document.getElementById("reservationStatus").value = reservation.reservationStatus;
             document.getElementById("paymentStatus").value = reservation.paymentStatus;
 
-            // Used to create a hidden ID field if it is not present
+            // Create hidden ID field if not present
             if (!document.getElementById("reservationId")) {
                 let hidden = document.createElement("input");
                 hidden.type = "hidden";
@@ -95,8 +127,10 @@ function editReservation(id) {
         });
 }
 
-// Function used to delete an existing reservation
+
+// Function used to delete a reservation
 function deleteReservation(id) {
+
     var answer = confirm("Are you sure you want to delete this reservation?");
 
     if (!answer) return;
@@ -112,8 +146,10 @@ function deleteReservation(id) {
         });
 }
 
-// Shows the existing reservation data in the HTML table
+
+// Function used to display reservations in the HTML table
 function showReservations(reservations) {
+
     var table = document.getElementById("reservationTableBody");
     table.innerHTML = "";
 
@@ -123,6 +159,7 @@ function showReservations(reservations) {
     }
 
     for (var i = 0; i < reservations.length; i++) {
+
         var r = reservations[i];
 
         table.innerHTML +=
@@ -142,8 +179,10 @@ function showReservations(reservations) {
     }
 }
 
-// Used to clear the form after the user has submitted or updated it
+
+// Clears the form after submission or update
 function clearForm() {
+
     document.getElementById("userId").value = "";
     document.getElementById("fieldId").value = "";
     document.getElementById("reservationDate").value = "";
@@ -152,7 +191,6 @@ function clearForm() {
     document.getElementById("reservationStatus").value = "";
     document.getElementById("paymentStatus").value = "false";
 
-    // Removes hidden ID fields if they exist
     var idField = document.getElementById("reservationId");
     if (idField) idField.remove();
 }

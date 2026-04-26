@@ -20,22 +20,22 @@ public class Reservation {
 
     // Creates the required columns for this database with constraints (nullable = false)
 
-    @Column(name="reservation_date", nullable = false)
+    @Column(name = "reservation_date", nullable = false)
     private LocalDate reservationDate;
 
-    @Column(name="start_time", nullable = false)
+    @Column(name = "start_time", nullable = false)
     private LocalTime startTime;
 
-    @Column(name="end_time", nullable = false)
+    @Column(name = "end_time", nullable = false)
     private LocalTime endTime;
 
-    @Column(name="total_cost", nullable = false)
+    @Column(name = "total_cost", nullable = false)
     private double totalCost;
 
-    @Column(name="reservation_status", nullable = false)
+    @Column(name = "reservation_status", nullable = false)
     private String reservationStatus;
 
-    @Column(name="payment_status", nullable = false)
+    @Column(name = "payment_status", nullable = false)
     private boolean paymentStatus;
 
     @Column(name = "user_id", nullable = false)
@@ -152,7 +152,9 @@ public class Reservation {
 
     // Used to calculate the total cost
     public void calculateTotalCost(double hourlyRate) {
-        long duration = Duration.between(startTime, endTime).toHours();
-        this.totalCost = duration * hourlyRate;
+        if (startTime != null && endTime != null) {
+            long duration = Duration.between(startTime, endTime).toHours();
+            this.totalCost = duration * hourlyRate;
+        }
     }
 }
