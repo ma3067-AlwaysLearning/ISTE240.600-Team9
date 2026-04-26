@@ -2,6 +2,7 @@ package org.example.fieldreserve.model;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -22,7 +23,7 @@ public class Location {
     private String locationCity; // Cities like Dubai,Sharjah and so ...
 
     @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
-    private ArrayList<Field> fields = new ArrayList<>(); //Holds all fields that belong in a single location
+    private List<Field> fields = new ArrayList<>(); //Holds all fields that belong in a single location
 
 
     public Location(){
@@ -34,7 +35,6 @@ public class Location {
         this.locationName = locationName;
         this.locationArea = locationArea;
         this.locationCity = locationCity;
-        this.fields = new ArrayList<>();
     }
 
     public String getLocationName() {
@@ -53,7 +53,7 @@ public class Location {
         this.locationID = locationID;
     }
 
-    public ArrayList<Field> getFields() {
+    public List<Field> getFields() {
         return fields;
     }
 

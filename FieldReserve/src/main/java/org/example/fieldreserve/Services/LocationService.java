@@ -32,10 +32,13 @@ public class LocationService {
         return locationRepository.save(location);
     }
 
+    public void deleteLocationById(Long id){
+        locationRepository.deleteById(id);
+    }
     public Location updateLocation(Long id, Location locationToUpdate){
         Location existingLocation = locationRepository.findById(id).orElseThrow(()-> new RuntimeException("Location not found"));
-        existingLocation.setLocationArea(locationToUpdate.getLocationArea());
         existingLocation.setLocationName(locationToUpdate.getLocationName());
+        existingLocation.setLocationArea(locationToUpdate.getLocationArea());
         existingLocation.setLocationCity(locationToUpdate.getLocationCity());
         return locationRepository.save(existingLocation);
     }
