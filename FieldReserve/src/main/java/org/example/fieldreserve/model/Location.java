@@ -1,13 +1,28 @@
 package org.example.fieldreserve.model;
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 
 
+@Entity
+@Table(name="locations")
 public class Location {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int locationID; // Unique identifier for a location area
-    private ArrayList<Field> fields = new ArrayList<>(); //Holds all fields that belong in a single location
+
+    @Column(nullable = false)
     private String locationName; // A name given for the location
+
+    @Column(nullable = false)
     private String locationArea; // A place inside a city, like Dubai Silicon Oasis
+
+    @Column(nullable = false)
     private String locationCity; // Cities like Dubai,Sharjah and so ...
+
+    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
+    private ArrayList<Field> fields = new ArrayList<>(); //Holds all fields that belong in a single location
 
 
     public Location(){
@@ -61,7 +76,11 @@ public class Location {
 
     public void addField(Field field){
         this.fields.add(field);
-        field.setFieldLocation(this.locationArea);
+        field.setLocation(this);
+    }
+
+    public void setFields(ArrayList<Field> fields) {
+        this.fields = fields;
     }
 
     @Override
