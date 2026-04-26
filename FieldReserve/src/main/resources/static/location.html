@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Locations</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="container mt-4">
+
+<h2>Location Management</h2>
+
+<div class="mb-3">
+    <select id="searchCity" class="form-control mb-2" required>
+        <option value="">Search by City</option>
+        <option value="Dubai">Dubai</option>
+        <option value="Sharjah">Sharjah</option>
+        <option value="Abu Dhabi">Abu Dhabi</option>
+        <option value="Ajman">Ajman</option>
+        <option value="Fujairah">Fujairah</option>
+        <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+        <option value="Umm Al Quwain">Umm Al Quwain</option>
+    </select>
+    <input class="form-control mb-2" type="number" id="searchID" placeholder="Search by ID" min="1">
+    <button class="btn btn-primary mt-2" id="search">Search By Id</button>
+    <button class="btn btn-primary mt-2" onclick="location.reload()">Clear Search Filter</button>
+</div>
+
+<div class="card p-3 mb-3">
+    <h5 id="locationText">Add Location</h5>
+
+    <input type="hidden" id="editId">
+    <input id="name" class="form-control mb-2" placeholder="Name" required>
+    <input id="area" class="form-control mb-2" placeholder="Area" required>
+    <select id="city" class="form-control mb-2" required>
+        <option value="">Select City</option>
+        <option value="Dubai">Dubai</option>
+        <option value="Sharjah">Sharjah</option>
+        <option value="Abu Dhabi">Abu Dhabi</option>
+        <option value="Ajman">Ajman</option>
+        <option value="Fujairah">Fujairah</option>
+        <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+        <option value="Umm Al Quwain">Umm Al Quwain</option>
+    </select>
+
+    <button class="btn btn-success" id="addBtn">Add</button>
+    <button class="btn btn-primary mt-2" id="updateBtn">Update</button>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Area</th>
+        <th>City</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody id="locationTable"></tbody>
+</table>
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    let locationAPI = "http://localhost:8080/api/locations"
+    function validateForm() {
+
+        let name = $("#name").val().trim();
+        let area = $("#area").val().trim();
+        let city = $("#city").val().trim();
+
+        if (name === "" || area === "" || city === "") {
+            alert("All fields are required!");
+            return false;
+        }
+
+        return true;
+    }
+    function deleteLocation(id) {
+        let locationAPI = "http://localhost:8080/api/locations"
+        $.ajax({
+            url: locationAPI + "/" + id,
+            type: "DELETE",
+            success: function () {
+                location.reload();
+            }
+        });
+    }
+
+    function fillEditForm(id, name, area, city) {
+
+        $("#editId").val(id);
+        $("#name").val(name);
+        $("#area").val(area);
+        $("#city").val(city);
+
+        $("#addBtn").hide();
+        $("#locationText").text("Update Location");
+        $("#updateBtn").show();
+    }
+
+    $("#updateBtn").click( function (){
+        let locationAPI = "http://localhost:8080/api/locations"
+        const id = $("#editId").val();
+        if (!validateForm()) return;
+        $.ajax({
+            url: locationAPI + "/" + id,
+            type: "PUT",
+            contentType: "application/json",
+            data: JSON.stringify({
+                locationName: $("#name").val(),
+                locationArea: $("#area").val(),
+                locationCity: $("#city").val()
+            }),
+            success: function () {
+                alert("Location updated successfully.");
+                location.reload();
+            }
+        });
+    })
+    $.get(locationAPI, function (data){
+        let locationTable = ""
+        for(var i=0; i<data.length; i++){
+            let location = data[i];
+            locationTable += `<tr>
+                                <td> ${location.locationID} </td>
+                                <td> ${location.locationName} </td>
+                                <td> ${location.locationArea} </td>
+                                <td> ${location.locationCity} </td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm me-1"onclick="fillEditForm(${location.locationID},'${location.locationName}','${location.locationArea}','${location.locationCity}')">Edit</button>
+                                    <button class="btn btn-danger btn-sm" onclick="deleteLocation(${location.locationID})">Delete</button>
+                                </td>
+                                </tr>`
+
+        }
+        $("#locationTable").html(locationTable);
+    });
+
+    $("#searchCity").click(function (){
+        let city = $("#searchCity").val();
+        $.get(locationAPI + "/citySearch?city=" + city, function (data) {
+
+            let locationTable = "";
+
+            for(var i=0; i<data.length; i++){
+                let location = data[i];
+                locationTable += `<tr>
+                                <td> ${location.locationID} </td>
+                                <td> ${location.locationName} </td>
+                                <td> ${location.locationArea} </td>
+                                <td> ${location.locationCity} </td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm me-1"onclick="fillEditForm(${location.locationID},'${location.locationName}','${location.locationArea}','${location.locationCity}')">Edit</button>
+                                    <button class="btn btn-danger btn-sm" onclick="deleteLocation(${location.locationID})">Delete</button>
+                                </td>
+                                </tr>`
+            }
+            $("#locationTable").html(locationTable);
+        });
+
+    });
+
+    $("#addBtn").click(function () {
+        if (!validateForm()) return;
+        let locationAPI = "http://localhost:8080/api/locations"
+        $.ajax({
+            url: locationAPI,
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({
+                locationName: $("#name").val(),
+                locationArea: $("#area").val(),
+                locationCity: $("#city").val()
+            }),
+            success: function () {
+                alert("Location Added Successfully!")
+                location.reload();
+            }
+        });
+    });
+    $("#search").click(function (){
+        let locationAPI = "http://localhost:8080/api/locations"
+        let id = $("#searchID").val();
+
+        if (id === "" || id <= 0) {
+            alert("Please enter a ID greater than 0");
+            return;
+        }
+
+        $.get(locationAPI + "/" + id, function (data) {
+            let locationTable = "";
+            locationTable += `<tr>
+                                    <td> ${data.locationID} </td>
+                                    <td> ${data.locationName} </td>
+                                    <td> ${data.locationArea} </td>
+                                    <td> ${data.locationCity} </td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm me-1"onclick="fillEditForm(${data.locationID},'${data.locationName}','${data.locationArea}','${data.locationCity}')">Edit</button>
+                                        <button class="btn btn-danger btn-sm" onclick="deleteLocation(${data.locationID})">Delete</button>
+                                    </td>
+                            </tr>`
+            $("#locationTable").html(locationTable);
+
+    })});
+    $(document).ready(function () {
+        $("#updateBtn").hide();
+    });
+</script>
+</body>
+</html>
