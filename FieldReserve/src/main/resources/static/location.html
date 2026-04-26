@@ -1,212 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Locations</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FieldReserve | Locations</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
+<body>
 
-<body class="container mt-4">
+<nav class="app-navbar">
+    <div class="app-navbar-inner">
+        <a class="brand-lockup" href="index.html">
+            <span class="brand-mark">FR</span>
+            <span>
+                <span class="brand-title">FieldReserve</span>
+                <span class="brand-subtitle">Team 9 Booking System</span>
+            </span>
+        </a>
+        <ul class="nav-list">
+            <li><a href="index.html">Homepage</a></li>
+            <li><a href="users.html">Users</a></li>
+            <li><a href="reservations.html">Reservations</a></li>
+            <li><a class="active" href="location.html">Locations</a></li>
+            <li><a href="fields.html">Fields</a></li>
+        </ul>
+    </div>
+</nav>
 
-<h2>Location Management</h2>
+<main class="page-shell">
+    <section class="page-hero">
+        <span class="eyebrow">Location Management</span>
+        <h1 class="page-title">Organize venues by name, area, and city.</h1>
+        <p class="page-description">Search existing locations, add new venues, and update facility location details.</p>
+    </section>
 
-<div class="mb-3">
-    <select id="searchCity" class="form-control mb-2" required>
-        <option value="">Search by City</option>
-        <option value="Dubai">Dubai</option>
-        <option value="Sharjah">Sharjah</option>
-        <option value="Abu Dhabi">Abu Dhabi</option>
-        <option value="Ajman">Ajman</option>
-        <option value="Fujairah">Fujairah</option>
-        <option value="Ras Al Khaimah">Ras Al Khaimah</option>
-        <option value="Umm Al Quwain">Umm Al Quwain</option>
-    </select>
-    <input class="form-control mb-2" type="number" id="searchID" placeholder="Search by ID" min="1">
-    <button class="btn btn-primary mt-2" id="search">Search By Id</button>
-    <button class="btn btn-primary mt-2" onclick="location.reload()">Clear Search Filter</button>
-</div>
+    <section class="content-grid">
+        <article class="app-card">
+            <div class="app-card-header">
+                <h2 class="app-card-title">Search Locations</h2>
+                <p class="app-card-subtitle">Filter by city or search by location ID.</p>
+            </div>
+            <div class="app-card-body">
+                <div class="mb-3">
+                    <label class="form-label" for="searchCity">City</label>
+                    <select id="searchCity" class="form-select" required>
+                        <option value="">Search by City</option>
+                        <option value="Dubai">Dubai</option>
+                        <option value="Sharjah">Sharjah</option>
+                        <option value="Abu Dhabi">Abu Dhabi</option>
+                        <option value="Ajman">Ajman</option>
+                        <option value="Fujairah">Fujairah</option>
+                        <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+                        <option value="Umm Al Quwain">Umm Al Quwain</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="searchID">Location ID</label>
+                    <input class="form-control" type="number" id="searchID" placeholder="Search by ID" min="1">
+                </div>
+                <div class="search-actions">
+                    <button class="btn btn-primary" id="search">Search By ID</button>
+                    <button class="btn btn-secondary" onclick="location.reload()">Clear</button>
+                </div>
+            </div>
+        </article>
 
-<div class="card p-3 mb-3">
-    <h5 id="locationText">Add Location</h5>
+        <article class="app-card">
+            <div class="app-card-header">
+                <h2 class="app-card-title" id="locationText">Add Location</h2>
+                <p class="app-card-subtitle">Enter the venue location information.</p>
+            </div>
+            <div class="app-card-body">
+                <input type="hidden" id="editId">
 
-    <input type="hidden" id="editId">
-    <input id="name" class="form-control mb-2" placeholder="Name" required>
-    <input id="area" class="form-control mb-2" placeholder="Area" required>
-    <select id="city" class="form-control mb-2" required>
-        <option value="">Select City</option>
-        <option value="Dubai">Dubai</option>
-        <option value="Sharjah">Sharjah</option>
-        <option value="Abu Dhabi">Abu Dhabi</option>
-        <option value="Ajman">Ajman</option>
-        <option value="Fujairah">Fujairah</option>
-        <option value="Ras Al Khaimah">Ras Al Khaimah</option>
-        <option value="Umm Al Quwain">Umm Al Quwain</option>
-    </select>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label" for="name">Name</label>
+                        <input id="name" class="form-control" placeholder="Example: Community Stadium" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="area">Area</label>
+                        <input id="area" class="form-control" placeholder="Example: Mirdif" required>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="city">City</label>
+                        <select id="city" class="form-select" required>
+                            <option value="">Select City</option>
+                            <option value="Dubai">Dubai</option>
+                            <option value="Sharjah">Sharjah</option>
+                            <option value="Abu Dhabi">Abu Dhabi</option>
+                            <option value="Ajman">Ajman</option>
+                            <option value="Fujairah">Fujairah</option>
+                            <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+                            <option value="Umm Al Quwain">Umm Al Quwain</option>
+                        </select>
+                    </div>
+                </div>
 
-    <button class="btn btn-success" id="addBtn">Add</button>
-    <button class="btn btn-primary mt-2" id="updateBtn">Update</button>
-</div>
+                <div class="form-actions mt-4">
+                    <button class="btn btn-primary" id="addBtn">Add Location</button>
+                    <button class="btn btn-primary" id="updateBtn">Update Location</button>
+                </div>
+            </div>
+        </article>
+    </section>
 
-<table class="table table-bordered">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Area</th>
-        <th>City</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-
-    <tbody id="locationTable"></tbody>
-</table>
-
+    <section class="app-card mt-4">
+        <div class="app-card-header">
+            <h2 class="app-card-title">Locations Table</h2>
+            <p class="app-card-subtitle">All location records returned from the backend.</p>
+        </div>
+        <div class="table-wrap">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Area</th>
+                    <th>City</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody id="locationTable"></tbody>
+            </table>
+        </div>
+    </section>
+</main>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script>
-    let locationAPI = "http://localhost:8080/api/locations"
-    function validateForm() {
-
-        let name = $("#name").val().trim();
-        let area = $("#area").val().trim();
-        let city = $("#city").val().trim();
-
-        if (name === "" || area === "" || city === "") {
-            alert("All fields are required!");
-            return false;
-        }
-
-        return true;
-    }
-    function deleteLocation(id) {
-        let locationAPI = "http://localhost:8080/api/locations"
-        $.ajax({
-            url: locationAPI + "/" + id,
-            type: "DELETE",
-            success: function () {
-                location.reload();
-            }
-        });
-    }
-
-    function fillEditForm(id, name, area, city) {
-
-        $("#editId").val(id);
-        $("#name").val(name);
-        $("#area").val(area);
-        $("#city").val(city);
-
-        $("#addBtn").hide();
-        $("#locationText").text("Update Location");
-        $("#updateBtn").show();
-    }
-
-    $("#updateBtn").click( function (){
-        let locationAPI = "http://localhost:8080/api/locations"
-        const id = $("#editId").val();
-        if (!validateForm()) return;
-        $.ajax({
-            url: locationAPI + "/" + id,
-            type: "PUT",
-            contentType: "application/json",
-            data: JSON.stringify({
-                locationName: $("#name").val(),
-                locationArea: $("#area").val(),
-                locationCity: $("#city").val()
-            }),
-            success: function () {
-                alert("Location updated successfully.");
-                location.reload();
-            }
-        });
-    })
-    $.get(locationAPI, function (data){
-        let locationTable = ""
-        for(var i=0; i<data.length; i++){
-            let location = data[i];
-            locationTable += `<tr>
-                                <td> ${location.locationID} </td>
-                                <td> ${location.locationName} </td>
-                                <td> ${location.locationArea} </td>
-                                <td> ${location.locationCity} </td>
-                                <td>
-                                    <button class="btn btn-warning btn-sm me-1"onclick="fillEditForm(${location.locationID},'${location.locationName}','${location.locationArea}','${location.locationCity}')">Edit</button>
-                                    <button class="btn btn-danger btn-sm" onclick="deleteLocation(${location.locationID})">Delete</button>
-                                </td>
-                                </tr>`
-
-        }
-        $("#locationTable").html(locationTable);
-    });
-
-    $("#searchCity").click(function (){
-        let city = $("#searchCity").val();
-        $.get(locationAPI + "/citySearch?city=" + city, function (data) {
-
-            let locationTable = "";
-
-            for(var i=0; i<data.length; i++){
-                let location = data[i];
-                locationTable += `<tr>
-                                <td> ${location.locationID} </td>
-                                <td> ${location.locationName} </td>
-                                <td> ${location.locationArea} </td>
-                                <td> ${location.locationCity} </td>
-                                <td>
-                                    <button class="btn btn-warning btn-sm me-1"onclick="fillEditForm(${location.locationID},'${location.locationName}','${location.locationArea}','${location.locationCity}')">Edit</button>
-                                    <button class="btn btn-danger btn-sm" onclick="deleteLocation(${location.locationID})">Delete</button>
-                                </td>
-                                </tr>`
-            }
-            $("#locationTable").html(locationTable);
-        });
-
-    });
-
-    $("#addBtn").click(function () {
-        if (!validateForm()) return;
-        let locationAPI = "http://localhost:8080/api/locations"
-        $.ajax({
-            url: locationAPI,
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({
-                locationName: $("#name").val(),
-                locationArea: $("#area").val(),
-                locationCity: $("#city").val()
-            }),
-            success: function () {
-                alert("Location Added Successfully!")
-                location.reload();
-            }
-        });
-    });
-    $("#search").click(function (){
-        let locationAPI = "http://localhost:8080/api/locations"
-        let id = $("#searchID").val();
-
-        if (id === "" || id <= 0) {
-            alert("Please enter a ID greater than 0");
-            return;
-        }
-
-        $.get(locationAPI + "/" + id, function (data) {
-            let locationTable = "";
-            locationTable += `<tr>
-                                    <td> ${data.locationID} </td>
-                                    <td> ${data.locationName} </td>
-                                    <td> ${data.locationArea} </td>
-                                    <td> ${data.locationCity} </td>
-                                    <td>
-                                        <button class="btn btn-warning btn-sm me-1"onclick="fillEditForm(${data.locationID},'${data.locationName}','${data.locationArea}','${data.locationCity}')">Edit</button>
-                                        <button class="btn btn-danger btn-sm" onclick="deleteLocation(${data.locationID})">Delete</button>
-                                    </td>
-                            </tr>`
-            $("#locationTable").html(locationTable);
-
-    })});
-    $(document).ready(function () {
-        $("#updateBtn").hide();
-    });
-</script>
+<script src="js/location.js"></script>
 </body>
 </html>

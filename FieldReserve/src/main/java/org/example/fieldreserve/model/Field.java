@@ -62,7 +62,7 @@ public class Field {
 
     public String getLocationCity() {
         if (location != null) {
-            return location.getCity(); //Mohammad Adil can you check this***
+            return location.getLocationCity(); //Mohammad Adil can you check this***
         } else {
             return null;
         }

@@ -100,6 +100,7 @@ function editUser(id) {
             document.getElementById("password").value = user.password;
 
             document.getElementById("formTitle").innerText = "Edit User";
+            window.scrollTo({ top: 0, behavior: "smooth" });
         })
         .catch(error => {
             showMessage("Error loading user", "danger");
@@ -131,7 +132,7 @@ function showUsers(users) {
     table.innerHTML = "";
 
     if (users.length === 0) {
-        table.innerHTML = "<tr><td colspan='7' class='text-center'>No users found</td></tr>";
+        table.innerHTML = "<tr><td colspan='7' class='empty-state'>No users found</td></tr>";
         return;
     }
 
@@ -144,7 +145,7 @@ function showUsers(users) {
             "<td>" + user.fullName + "</td>" +
             "<td>" + user.email + "</td>" +
             "<td>" + user.phone + "</td>" +
-            "<td>" + user.role + "</td>" +
+            "<td><span class='badge-soft'>" + user.role + "</span></td>" +
             "<td>" + user.createdAt + "</td>" +
             "<td>" +
             "<button class='btn btn-warning btn-sm me-2' onclick='editUser(" + user.userId + ")'>Edit</button>" +

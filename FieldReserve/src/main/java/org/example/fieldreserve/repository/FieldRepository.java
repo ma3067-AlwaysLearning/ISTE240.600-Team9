@@ -17,6 +17,8 @@ public interface FieldRepository extends JpaRepository<Field, Integer> {
     //Add findByFieldName(String fieldName)
     List<Field> findByFieldName(String fieldName);
 
+    List<Field> findByFieldNameContainingIgnoreCase(String fieldName);
+
     //Add one custom JPQL query, for example findAvailableFields()
     @Query("SELECT f FROM Field f WHERE f.availabilityStatus = 'AVAILABLE'")
     List<Field> findAvailableFields();
