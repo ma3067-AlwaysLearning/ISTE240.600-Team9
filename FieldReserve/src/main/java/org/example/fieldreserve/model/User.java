@@ -1,8 +1,9 @@
 package org.example.fieldreserve.model;
 
-import org.springframework.stereotype.Component;
 
-@Component
+import java.util.ArrayList;
+
+
 public class User {
     private int  ID;
     private String fullName;
@@ -11,7 +12,7 @@ public class User {
     private String role;
     private String password;
     private String createdAt;
-
+    private ArrayList<Reservation> reservations = new ArrayList<>();
     // Default constructor
     public User() {}
 
@@ -29,6 +30,10 @@ public class User {
 
     // Getters & Setters
     public int getID() {return ID;}
+
+    public ArrayList<Reservation> getReservations() {return reservations;}
+
+    public void setReservations(ArrayList<Reservation> reservations) {this.reservations = reservations;}
 
     public void setID(int ID) {this.ID = ID;}
 

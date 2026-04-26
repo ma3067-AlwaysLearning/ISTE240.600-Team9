@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Location & Field Data</title>
+
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: auto;
+            width: auto;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        th {
+            background-color: #1E2E57;
+            color: #F2C94C;
+        }
+
+        th:hover {
+            background-color: #19274A;
+            cursor: pointer;
+        }
+
+        td {
+            background-color: #F2C94C;
+            color: black;
+        }
+
+        td:hover {
+            background-color: #E6BE45;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+
+<body>
+<h1 style="text-align: center">Location & Field Data</h1>
+<table>
+    <tr>
+        <th>Location ID</th>
+        <th>Location Name</th>
+        <th>Location Area</th>
+        <th>Location City</th>
+        <th>Field ID</th>
+        <th>Field Name</th>
+        <th>Field Location</th>
+        <th>Hourly Rate</th>
+        <th>Availability Status</th>
+    </tr>
+
+    <tr>
+        <td>{{locationID}}</td>
+        <td>{{locationName}}</td>
+        <td>{{locationArea}}</td>
+        <td>{{locationCity}}</td>
+        <td>{{fieldID}}</td>
+        <td>{{fieldName}}</td>
+        <td>{{fieldLocation}}</td>
+        <td>{{hourlyRate}}</td>
+        <td>{{availabilityStatus}}</td>
+    </tr>
+</table>
+<a style="font-weight: bold" href="/">Click on this link to return to the homepage.</a>
+
+</body>
+</html>
