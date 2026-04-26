@@ -1,4 +1,4 @@
-package org.example.fieldreserve.Services;
+package org.example.fieldreserve.service;
 
 import org.example.fieldreserve.model.Field;
 import org.example.fieldreserve.model.Location;
