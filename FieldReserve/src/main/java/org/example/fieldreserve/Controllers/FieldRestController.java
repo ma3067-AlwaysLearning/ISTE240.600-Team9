@@ -1,7 +1,9 @@
 package org.example.fieldreserve.Controllers;
 
 import org.example.fieldreserve.model.Field;
-import org.example.fieldreserve.Services.FieldService;
+import org.example.fieldreserve.service.FieldService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,8 +32,14 @@ public class FieldRestController {
 
     //To get one field using the ID
     @GetMapping("/{id}")
-    public Field getFieldById(@PathVariable Integer id) {
-        return fieldService.getFieldById(id);
+    public ResponseEntity<?> getFieldById(@PathVariable Integer id) {
+        Field field = fieldService.getFieldById(id);
+
+        if (field == null) {
+            return new ResponseEntity<>("Field not found.", HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(field, HttpStatus.OK);
     }
 
     //for searching fields by name
@@ -42,25 +50,44 @@ public class FieldRestController {
 
     //to add new field --> use POST here since we are giving server data
     @PostMapping
-    public Field addField(@RequestBody Field field) {
-        return fieldService.addField(field);
+    public ResponseEntity<?> addField(@RequestBody Field field) {
+        try {
+            Field savedField = fieldService.addField(field);
+            return new ResponseEntity<>(savedField, HttpStatus.CREATED);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error adding field.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     //to update a field
     @PutMapping("/{id}")
-    public Field updateField(@PathVariable Integer id, @RequestBody Field field) {
-        return fieldService.updateField(id, field);
+    public ResponseEntity<?> updateField(@PathVariable Integer id, @RequestBody Field field) {
+        try {
+            Field updatedField = fieldService.updateField(id, field);
+
+            if (updatedField == null) {
+                return new ResponseEntity<>("Field not found.", HttpStatus.NOT_FOUND);
+            }
+
+            return new ResponseEntity<>(updatedField, HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error updating field.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     //used to delete a field
     @DeleteMapping("/{id}")
-    public String deleteField(@PathVariable Integer id) {
+    public ResponseEntity<String> deleteField(@PathVariable Integer id) {
         boolean deleted = fieldService.deleteField(id);
 
-        if (deleted == true) {
-            return "Field deleted successfully";
+        if (deleted) {
+            return new ResponseEntity<>("Field deleted successfully.", HttpStatus.OK);
         } else {
-            return "Field not found";
+            return new ResponseEntity<>("Field not found.", HttpStatus.NOT_FOUND);
         }
     }
 }

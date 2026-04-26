@@ -3,68 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Field Booking Application by Team 9</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        html, body {
-            margin: 0;
-        }
-
-        body {
-            background-color: #283A71;
-            color: #F2C94C;
-        }
-
-        h1 {
-            padding: 10px;
-        }
-
-        .navbar-custom {
-            background-color: #1E2E57;
-            padding: 10px 0;
-        }
-
-        nav > ul {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .nav-list {
-            list-style: none;
-            display: flex;
-            justify-content: space-evenly;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-list li a {
-            color: #F2C94C;
-            font-size: 1.2rem;
-            text-decoration: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-        }
-
-        .nav-list li a:hover {
-            background-color: #25366A;
-        }
-
-    </style>
+    <title>FieldReserve | Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
-
 <body>
 
-<nav class="navbar-custom">
-    <ul class="nav-list">
-        <li><a href="index.html">Homepage</a></li>
-        <li><a href="users.html">Users</a></li>
-        <li><a href="reservations.html">Reservations</a></li>
-        <li><a href="location-field.html">Location & Field</a></li>
-    </ul>
+<nav class="app-navbar">
+    <div class="app-navbar-inner">
+        <a class="brand-lockup" href="index.html">
+            <span class="brand-mark">FR</span>
+            <span>
+                <span class="brand-title">FieldReserve</span>
+                <span class="brand-subtitle">Booking Management System</span>
+            </span>
+        </a>
 
+        <ul class="nav-list">
+            <li><a class="active" href="index.html">Dashboard</a></li>
+            <li><a href="users.html">Users</a></li>
+            <li><a href="reservations.html">Reservations</a></li>
+            <li><a href="location.html">Locations</a></li>
+            <li><a href="fields.html">Fields</a></li>
+        </ul>
+    </div>
 </nav>
-<h1 style="text-align: center">Welcome to Field Booking Application</h1>
-<p>Our idea is to build a digital field booking system called FieldReserve, a web-based app that lets sports enthusiasts and community groups browse available sports fields and submit booking requests easily without conflicts. Instead of complicated scheduling platforms or calling to reserve, FieldReserve focuses on simple reservations, clear availability, and persistent user selections. Users pick a field and date/time, the system automatically checks availability based on existing bookings, prevents basic conflicts, and then sends a confirmation email with the booking details to make community field reservations safer, faster, and more organized.</p>
+
+<main class="app-layout">
+
+    <section class="dashboard-header">
+        <div>
+            <span class="eyebrow">System Overview</span>
+            <h1>Dashboard</h1>
+            <p>
+                Manage users, sports fields, locations, and reservations from one centralized web application.
+            </p>
+        </div>
+
+        <div class="dashboard-actions">
+            <a class="btn btn-primary" href="reservations.html">New Reservation</a>
+            <a class="btn btn-secondary" href="fields.html">Manage Fields</a>
+        </div>
+    </section>
+
+    <section class="metric-grid">
+        <article class="metric-card">
+            <div class="metric-icon">U</div>
+            <div>
+                <span class="metric-label">Users</span>
+                <h2>User Management</h2>
+                <p>Create, search, update, and delete system users.</p>
+            </div>
+        </article>
+
+        <article class="metric-card">
+            <div class="metric-icon">F</div>
+            <div>
+                <span class="metric-label">Fields</span>
+                <h2>Field Management</h2>
+                <p>Manage field names, rates, locations, and availability.</p>
+            </div>
+        </article>
+
+        <article class="metric-card">
+            <div class="metric-icon">L</div>
+            <div>
+                <span class="metric-label">Locations</span>
+                <h2>Location Records</h2>
+                <p>Organize sports facilities by name, area, and city.</p>
+            </div>
+        </article>
+
+        <article class="metric-card">
+            <div class="metric-icon">R</div>
+            <div>
+                <span class="metric-label">Reservations</span>
+                <h2>Booking Control</h2>
+                <p>Track reservation dates, times, status, and payment.</p>
+            </div>
+        </article>
+    </section>
+
+    <section class="dashboard-grid">
+
+        <article class="app-card">
+            <div class="app-card-header">
+                <h2 class="app-card-title">Quick Actions</h2>
+                <p class="app-card-subtitle">Open the main system pages directly.</p>
+            </div>
+
+            <div class="quick-action-list">
+                <a href="users.html" class="quick-action">
+                    <span class="quick-action-icon">01</span>
+                    <div>
+                        <strong>Manage Users</strong>
+                        <small>Add, edit, search, and remove users.</small>
+                    </div>
+                </a>
+
+                <a href="reservations.html" class="quick-action">
+                    <span class="quick-action-icon">02</span>
+                    <div>
+                        <strong>Manage Reservations</strong>
+                        <small>Create bookings and update reservation status.</small>
+                    </div>
+                </a>
+
+                <a href="location.html" class="quick-action">
+                    <span class="quick-action-icon">03</span>
+                    <div>
+                        <strong>Manage Locations</strong>
+                        <small>Control venue names, cities, and areas.</small>
+                    </div>
+                </a>
+
+                <a href="fields.html" class="quick-action">
+                    <span class="quick-action-icon">04</span>
+                    <div>
+                        <strong>Manage Fields</strong>
+                        <small>Update rates, field data, and availability.</small>
+                    </div>
+                </a>
+            </div>
+        </article>
+
+        <article class="app-card">
+            <div class="app-card-header">
+                <h2 class="app-card-title">System Structure</h2>
+                <p class="app-card-subtitle">How the application is organized.</p>
+            </div>
+
+            <div class="app-card-body">
+                <div class="timeline-list">
+                    <div class="timeline-item">
+                        <span></span>
+                        <div>
+                            <strong>User chooses a field</strong>
+                            <p>The user checks available sports fields and selects a suitable option.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span></span>
+                        <div>
+                            <strong>Reservation is created</strong>
+                            <p>The booking stores the user ID, field ID, date, start time, and end time.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span></span>
+                        <div>
+                            <strong>Status is managed</strong>
+                            <p>The system tracks reservation status and payment status.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span></span>
+                        <div>
+                            <strong>Data stays organized</strong>
+                            <p>Fields and locations are managed from separate pages for cleaner structure.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+    </section>
+
+    <section class="app-card mt-4">
+        <div class="app-card-header">
+            <h2 class="app-card-title">Application Modules</h2>
+            <p class="app-card-subtitle">Each page follows the same design style and layout system.</p>
+        </div>
+
+        <div class="module-table">
+            <div class="module-row module-head">
+                <span>Module</span>
+                <span>Main Purpose</span>
+                <span>Page</span>
+            </div>
+
+            <div class="module-row">
+                <span>Users</span>
+                <span>Manage people using the system.</span>
+                <a href="users.html">Open</a>
+            </div>
+
+            <div class="module-row">
+                <span>Reservations</span>
+                <span>Control bookings, times, status, and payments.</span>
+                <a href="reservations.html">Open</a>
+            </div>
+
+            <div class="module-row">
+                <span>Locations</span>
+                <span>Store venue names, cities, and areas.</span>
+                <a href="location.html">Open</a>
+            </div>
+
+            <div class="module-row">
+                <span>Fields</span>
+                <span>Manage sports fields, rates, and availability.</span>
+                <a href="fields.html">Open</a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
 </body>
 </html>
