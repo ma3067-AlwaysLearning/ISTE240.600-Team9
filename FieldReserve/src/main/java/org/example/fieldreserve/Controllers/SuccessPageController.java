@@ -13,6 +13,6 @@ public class SuccessPageController {
     @GetMapping("/success/{entityName}") // Handles requests to access the success page
     public String showSuccessPage(@PathVariable String entityName, Model model) {
         model.addAttribute("entityName", entityName); // Gives the model a name for it to be displayed dynamically
-        return "input-success"; // Used to display the page
+        return "success"; // Used to display the page
     }
 }

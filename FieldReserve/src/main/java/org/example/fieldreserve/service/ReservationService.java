@@ -1,99 +1,78 @@
 package org.example.fieldreserve.service;
 
-import org.example.fieldreserve.model.Field;
-import org.example.fieldreserve.model.Location;
-
-import org.example.fieldreserve.model.User;
+import jakarta.transaction.Transactional;
 import org.example.fieldreserve.model.Reservation;
+import org.example.fieldreserve.repository.ReservationRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-@org.springframework.stereotype.Service
+@Service // Marks this class as a service component
+@Transactional // Used to verify that database operations are executed
 public class ReservationService {
-    private final List<User> users;
-    private final List<Reservation> reservations;
-    private final List<Location> location;
-    private final List<Field> fields;
 
+    // Used to inject the ReservtionRepository dependency automatically
+    @Autowired
+    private ReservationRepository reservationRepository;
 
+    public Reservation saveReservation(Reservation reservationToSave) {
+        // Ensures that the data input is accurately specified and saves the reservation to the database
+        if (reservationToSave.getReservationDate() == null)
+            throw new IllegalArgumentException("Reservation date cannot be null");
 
-    public ReservationService() {
-        this.users = new ArrayList<>();
-        this.location = new ArrayList<>();
-        this.fields = new ArrayList<>();
-        this.reservations = new ArrayList<>();
+        if (reservationToSave.getStartTime() == null || reservationToSave.getEndTime() == null)
+            throw new IllegalArgumentException("Start time and End time are required");
 
-        seedData();
+        if (!reservationToSave.getEndTime().isAfter(reservationToSave.getStartTime()))
+            throw new IllegalArgumentException("End time must be after start time");
 
+        if (reservationToSave.getUserId() == null)
+            throw new IllegalArgumentException("User ID cannot be null");
+
+        if (reservationToSave.getFieldId() == null)
+            throw new IllegalArgumentException("Field ID cannot be null");
+
+        return reservationRepository.save(reservationToSave);
     }
 
-    private void seedData() {
-        location.add(new Location("Qusais Fields","Al Qusais","Dubai", 10));
-        location.add(new Location("Barsha Courts","Al Barsha","Dubai", 3));
-        // Seed Users
-        users.add(new User(
-                1,
-                "Osama Ahmad",
-                "osama@example.com",
-                "0501234567",
-                "Admin",
-                "Pass@123",
-                "2026-02-20"
-        ));
-
-        users.add(new User(
-                2,
-                "Rashid Ali",
-                "rashid@example.com",
-                "0509876543",
-                "Customer",
-                "User@456",
-                "2026-02-21"
-        ));
-
-        reservations.add(new Reservation(1, LocalDate.of(2022, 3, 20), LocalTime.parse("18:00"), LocalTime.parse("20:00"), 100, "Accepted", true));
-        reservations.add(new Reservation(2, LocalDate.of(2026, 3, 21), LocalTime.parse("19:00"), LocalTime.parse("20:00"), 120, "Reserved", false));
-    }
-
-    // User Method
-    public List<User> getAllUsers() {
-        return users;
-    }
-
-    public List<Location> getAllLocations() {
-        return location;
-    }
-    public void addUser(User user) {
-        users.add(user);
-    }
-
-    // Returns an array showing all existing reservations
+    // Returns all existing reservations from the database
     public List<Reservation> getAllReservations() {
-        return reservations;
+        return reservationRepository.findAll();
     }
 
-    public void addLocation(Location location) {
-        this.location.add(location);
+    // Uses reservation IDs to retrieve them
+    public Optional<Reservation> getReservationById(Integer id) {
+        return reservationRepository.findById(id);
     }
 
-    // Adds a new reservation
-    public void addReservation(Reservation reservation) {
-        reservations.add(reservation);
+    // Uses reservation Status (confirmed, pending, cancelled) to retrieve them
+    public List<Reservation> getReservationsByStatus(String status) {
+        return reservationRepository.findByReservationStatus(status);
     }
 
-    public void addField(int id, String name) {
-        Field field = new Field(id, name, "Unknown", 0.0, true);
-        fields.add(field);
+    // Deletes reservations by using their IDs
+    public void deleteReservationById(Integer id) {
+        reservationRepository.deleteById(id);
     }
 
-    public void addField(Field field) {
-        fields.add(field);
-    }
+    // Updates an existing reservation with new values
+    public Reservation updateReservation(Integer id, Reservation reservationToUpdate) {
 
-    public List<Field> getAllFields() {
-        return fields;
+        Reservation existingReservation = reservationRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Reservation not found with id: " + id));
+
+        existingReservation.setReservationDate(reservationToUpdate.getReservationDate());
+        existingReservation.setStartTime(reservationToUpdate.getStartTime());
+        existingReservation.setEndTime(reservationToUpdate.getEndTime());
+        existingReservation.setTotalCost(reservationToUpdate.getTotalCost());
+        existingReservation.setReservationStatus(reservationToUpdate.getReservationStatus());
+        existingReservation.setPaymentStatus(reservationToUpdate.isPaymentStatus());
+
+        existingReservation.setUserId(reservationToUpdate.getUserId());
+        existingReservation.setFieldId(reservationToUpdate.getFieldId());
+
+        return reservationRepository.save(existingReservation);
     }
 }

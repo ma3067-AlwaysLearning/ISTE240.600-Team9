@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservations</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+
+<nav class="navbar-custom">
+    <ul class="nav-list">
+        <li><a href="index.html">Homepage</a></li>
+        <li><a href="user.html">Users</a></li>
+        <li><a href="reservations.html">Reservations</a></li>
+        <li><a href="locations.html">Locations</a></li>
+        <li><a href="fields.html">Fields</a></li>
+    </ul>
+</nav>
+
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-md-6 d-flex">
+            <input type="text"
+                   id="searchStatus"
+                   class="form-control me-2"
+                   placeholder="Search by Reservation Status (e.g. CONFIRMED)">
+
+            <button class="btn btn-warning" onclick="searchReservations()">
+                Search
+            </button>
+
+            <button class="btn btn-secondary ms-2" onclick="loadReservations()">
+                Reset
+            </button>
+
+        </div>
+    </div>
+</div>
+
+<h1 class="text-center mt-3">Reservations</h1>
+
+<!-- TABLE SECTION -->
+<div class="table-container">
+    <div class="container mt-4">
+
+        <table class="table table-striped table-hover table-bordered text-center align-middle">
+
+            <thead class="table-dark">
+
+            <tr>
+                <th colspan="8" class="text-center fs-4">List of Reservations</th>
+            </tr>
+
+            <tr>
+                <th>Reservation ID</th>
+                <th>Reservation Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Total Cost</th>
+                <th>Reservation Status</th>
+                <th>Payment Status</th>
+                <th>Actions</th>
+            </tr>
+
+            </thead>
+
+            <tbody id="reservationTableBody">
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+
+<div class="container mt-4">
+
+    <div class="form-container p-4 rounded shadow">
+
+        <h2 class="text-center mb-4">Create Reservation</h2>
+
+        <form id="reservationForm">
+
+            <div class="mb-3">
+                <label class="form-label">User ID</label>
+                <input type="number" class="form-control" id="userId" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Field ID</label>
+                <input type="number" class="form-control" id="fieldId" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Reservation Date</label>
+                <input type="date" class="form-control" id="reservationDate" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Start Time</label>
+                <input type="time" class="form-control" id="startTime" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">End Time</label>
+                <input type="time" class="form-control" id="endTime" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Reservation Status</label>
+                <input type="text" class="form-control" id="reservationStatus" placeholder="CONFIRMED">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Payment Status</label>
+                <select class="form-select" id="paymentStatus">
+                    <option value="false">Unpaid</option>
+                    <option value="true">Paid</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">
+                Submit Reservation
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="js/reservations.js"></script>
+
+</body>
+</html>
