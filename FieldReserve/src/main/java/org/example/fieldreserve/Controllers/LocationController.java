@@ -1,41 +1,49 @@
 package org.example.fieldreserve.Controllers;
 
-import org.example.fieldreserve.Services.ReservationService;
+import org.example.fieldreserve.Services.LocationService;
 import org.example.fieldreserve.model.Location;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/api/locations")
 public class LocationController {
 
     @Autowired
-    private ReservationService service;
+    private LocationService locationService;
 
-    //View all locations
-    @GetMapping("/locations")
-    public String showLocations(Model model) {
-        model.addAttribute("locations", service.getAllLocations());
-        return "location-datatable";
+    @GetMapping
+    public List<Location> getAllLocations() {
+        return locationService.getAllLocations();
     }
 
-    //Show form
-    @GetMapping("/locations/add")
-    public String showAddLocationForm() {
-        return "location_form";
+    @GetMapping("/{id}")
+    public Optional<Location> getLocationById(@PathVariable int id) {
+        return locationService.getLocationById(id);
     }
 
-    // Process form
-    @PostMapping("/locations/add")
-    public String addLocation(
-            @RequestParam("locationID") int locationID,
-            @RequestParam("locationName") String locationName,
-            @RequestParam("locationArea") String locationArea,
-            @RequestParam("locationCity") String locationCity) {
+    @GetMapping("/citySearch")
+    public List<Location> searchByCity(@RequestParam String city){
+        return locationService.findByCity(city);
+    }
 
-        Location location = new Location(locationName, locationArea, locationCity, locationID);
-        service.addLocation(location);
-        return "redirect:/locations";
+    @PostMapping
+    public Location createLocation(@RequestBody Location location){
+        return locationService.saveLocation(location);
+    }
+
+    @PutMapping("/{id}")
+    public Location updateLocation(@PathVariable Long id, @RequestBody Location location){
+        return locationService.updateLocation(id, location);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteLocationById(@PathVariable long id){
+        locationService.deleteLocationById(id);
     }
 }

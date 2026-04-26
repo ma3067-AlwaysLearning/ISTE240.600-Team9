@@ -2,16 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Field Booking Application by Team 9</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         html, body {
             margin: 0;
         }
 
-        nav {
+        body {
+            background-color: #283A71;
+            color: #F2C94C;
+        }
+
+        h1 {
+            padding: 10px;
+        }
+
+        .navbar-custom {
             background-color: #1E2E57;
-            padding: 2px;
+            padding: 10px 0;
         }
 
         nav > ul {
@@ -19,14 +30,24 @@
             justify-content: space-between;
         }
 
-        li a {
-            color: #F2C94C;
-            text-decoration: none;
-            font-size: 1.2rem;
+        .nav-list {
+            list-style: none;
+            display: flex;
+            justify-content: space-evenly;
+            margin: 0;
+            padding: 0;
         }
 
-        a:hover {
-            background-color: #1E2747;
+        .nav-list li a {
+            color: #F2C94C;
+            font-size: 1.2rem;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        .nav-list li a:hover {
+            background-color: #25366A;
         }
 
     </style>
@@ -34,19 +55,14 @@
 
 <body>
 
-<nav>
-    <ul style="list-style-type: none">
-        <li><a href="/locationField">Location & Field Form</a></li>
-        <li><a href="/reservation/add">Reservation Form</a></li>
-        <li><a href="/user">View Users</a></li>
-        <li><a href="/user/add">Add User</a></li>
-        <li><a href="/reservation">Reservation Data</a></li>
-        <li><a href="/user/add">User Information Form</a></li>
-        <li><a href="/locations">View Locations</a></li>
-        <li><a href="/fields">View Fields</a></li>
-        <li><a href="/fields/add">Add Field</a></li>
-        <li><a href="/locations/add">Add Location</a></li>
+<nav class="navbar-custom">
+    <ul class="nav-list">
+        <li><a href="index.html">Homepage</a></li>
+        <li><a href="users.html">Users</a></li>
+        <li><a href="reservations.html">Reservations</a></li>
+        <li><a href="location-field.html">Location & Field</a></li>
     </ul>
+
 </nav>
 <h1 style="text-align: center">Welcome to Field Booking Application</h1>
 <p>Our idea is to build a digital field booking system called FieldReserve, a web-based app that lets sports enthusiasts and community groups browse available sports fields and submit booking requests easily without conflicts. Instead of complicated scheduling platforms or calling to reserve, FieldReserve focuses on simple reservations, clear availability, and persistent user selections. Users pick a field and date/time, the system automatically checks availability based on existing bookings, prevents basic conflicts, and then sends a confirmation email with the booking details to make community field reservations safer, faster, and more organized.</p>

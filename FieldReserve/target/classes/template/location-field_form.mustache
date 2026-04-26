@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Details Form</title>
+</head>
+<body>
+<h1 style="text-align: center">Location & Field Preferences Form</h1>
+
+<p>This page contains a form for filling the desired location and field details. Therefore, you are kindly requested to fill
+    the form below.</p>
+
+<div class="ui-container">
+    <form class="ui-form" action="/location" method="post">
+
+        <div class="field">
+            <label>Location Area</label>
+            <input type="text" name="locationArea" placeholder="Location Area">
+        </div>
+
+        <div class="field">
+            <label>Location ID</label>
+            <input type="number" name="locationID" placeholder="Location ID">
+        </div>
+
+        <div class="field">
+            <label>Location Name</label>
+            <input type="text" name="locationName" placeholder="Location Name">
+        </div>
+
+        <div class="field">
+            <label>Location City</label>
+            <input type="text" name="locationCity" placeholder="Location City">
+        </div>
+
+        <div class="field">
+            <label>Field ID</label>
+            <input type="number" name="fieldID" placeholder="Field ID">
+        </div>
+
+        <div class="field">
+            <label>Field Name</label>
+            <input type="text" name="fieldName" placeholder="Field Name">
+        </div>
+
+        <div class="field">
+            <label>Field Location</label>
+            <input type="text" name="fieldLocation" placeholder="Field Area">
+        </div>
+
+        <button class="ui-button" type="submit">Submit</button>
+    </form>
+</div>
+<br>
+<a style="font-weight: bold" href="../static/index.html">Click on this link to return to the homepage.</a>
+</body>
+</html>
