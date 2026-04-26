@@ -29,7 +29,7 @@ public class Location {
 
     }
 
-    public Location(String locationName, String locationArea, String locationCity, int locationID) {
+    public Location(String locationName, String locationArea, String locationCity, Long locationID) {
         this.locationID = locationID;
         this.locationName = locationName;
         this.locationArea = locationArea;
@@ -45,11 +45,11 @@ public class Location {
         this.locationName = locationName;
     }
 
-    public int getLocationID() {
+    public Long getLocationID() {
         return locationID;
     }
 
-    public void setLocationID(int locationID) {
+    public void setLocationID(Long locationID) {
         this.locationID = locationID;
     }
 
