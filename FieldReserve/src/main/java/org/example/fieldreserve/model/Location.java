@@ -10,7 +10,7 @@ public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int locationID; // Unique identifier for a location area
+    private Long locationID; // Unique identifier for a location area
 
     @Column(nullable = false)
     private String locationName; // A name given for the location
