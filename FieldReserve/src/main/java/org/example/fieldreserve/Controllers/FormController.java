@@ -1,16 +1,13 @@
 package org.example.fieldreserve.Controllers;
 
-import org.example.fieldreserve.Services.ReservationService;
+import org.example.fieldreserve.service.ReservationService;
 import org.example.fieldreserve.model.User;
 import org.example.fieldreserve.model.Location;
 import org.example.fieldreserve.model.Field;
-import org.example.fieldreserve.model.Reservation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Controller
 public class FormController {

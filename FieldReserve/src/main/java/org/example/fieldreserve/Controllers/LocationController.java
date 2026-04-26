@@ -1,6 +1,6 @@
 package org.example.fieldreserve.Controllers;
 
-import org.example.fieldreserve.Services.ReservationService;
+import org.example.fieldreserve.service.ReservationService;
 import org.example.fieldreserve.model.Location;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
